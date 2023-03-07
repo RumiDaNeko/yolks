@@ -1,4 +1,4 @@
-FROM  --platform=$TARGETOS/$TARGETARCH window:ltsc2019
+FROM  --platform=$TARGETOS/$TARGETARCH ubuntu:22.04
 
 LABEL author="Michael Parker" maintainer="parker@pterodactyl.io"
 
