@@ -7,6 +7,7 @@ ENV   DEBIAN_FRONTEND noninteractive
 ## add container user
 RUN   useradd -m -d /home/container -s /bin/bash container
 RUN   usermod -a -G sudo container
+RUN   whoami
 ## update base packages
 RUN   apt update \
         &&   apt upgrade -y
