@@ -8,7 +8,7 @@ ENV     DEBIAN_FRONTEND noninteractive
 SHELL        ["/bin/bash","-c"]
 RUN          apt update \
              && apt upgrade -y
-RUN          apt install -y curl lsof ca-certificates openssl git tar sqlite3 fontconfig tzdata iproute2 libfreetype6
+RUN          apt install -y curl lsof ca-certificates openssl git tar sqlite3 fontconfig tzdata iproute2 libfreetype6 zip unzip curl
 ## Install dependencies
 
 ##Install graalVM
