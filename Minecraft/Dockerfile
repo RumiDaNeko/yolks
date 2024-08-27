@@ -21,7 +21,7 @@ RUN          update-locale lang=en_US.UTF-8 \
 
 ##Install graalVM
 RUN         curl -s "https://get.sdkman.io" | bash
-CMD     ["/bin/bash", "source $HOME/.sdkman/bin/sdkman-init.sh"]
+CMD     ["/bin/bash", "-c", "source $HOME/.sdkman/bin/sdkman-init.sh"]
 RUN         sdk install java 22.0.2-graal
 RUN		useradd -d /home/container -m container
 USER    container
