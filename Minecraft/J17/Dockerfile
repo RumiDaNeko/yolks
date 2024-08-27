@@ -10,9 +10,6 @@ RUN          apt update \
              && apt upgrade -y
 RUN          apt install -y curl lsof ca-certificates openssl git tar sqlite3 fontconfig tzdata iproute2 libfreetype6
 ## Install dependencies
-## Configure locale
-RUN           dpkg-reconfigure --frontend noninteractive locales
-
 
 ##Install graalVM
 RUN         curl -s "https://get.sdkman.io" | bash
