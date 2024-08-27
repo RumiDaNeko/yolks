@@ -11,8 +11,7 @@ RUN          apt update \
 RUN          apt install -y curl lsof ca-certificates openssl git tar sqlite3 fontconfig tzdata iproute2 libfreetype6
 ## Install dependencies
 ## Configure locale
-RUN          update-locale lang=en_US.UTF-8 \
-             && dpkg-reconfigure --frontend noninteractive locales
+RUN           dpkg-reconfigure --frontend noninteractive locales
 
 
 ##Install graalVM
