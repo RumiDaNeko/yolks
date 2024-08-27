@@ -10,13 +10,15 @@ on:
       - Minecraft/**
 jobs:
   push:
-    name: "yolks:${{ matrix.tag }}"
+    name: "yolks:minecraft_${{ matrix.tag }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         tag:
-          - Minecraft
+          - J22
+          - J20
+          - J17
     steps:
       - uses: actions/checkout@v3
       - uses: docker/setup-qemu-action@v2
@@ -31,8 +33,8 @@ jobs:
       - uses: docker/build-push-action@v4
         with:
           context: ./Minecraft
-          file: ./${{ matrix.tag }}/Dockerfile
+          file: ./Minecraft/${{ matrix.tag }}/Dockerfile
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/notminhducgamingtv/yolks:${{ matrix.tag }}
+            ghcr.io/notminhducgamingtv/yolks:minecraft_${{ matrix.tag }}
