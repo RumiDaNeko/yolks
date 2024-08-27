@@ -5,6 +5,7 @@ LABEL       author="Harumi" maintainer="ntncar311@gmail.com"
 ENV     DEBIAN_FRONTEND noninteractive
 
 ## Update base packages
+SHELL        ["/bin/bash","-c"]
 RUN          apt update \
              && apt upgrade -y
 RUN          apt install -y curl lsof ca-certificates openssl git tar sqlite3 fontconfig tzdata iproute2 libfreetype6
