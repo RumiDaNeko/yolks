@@ -1,6 +1,6 @@
 FROM        --platform=$TARGETOS/$TARGETARCH debian:bullseye-slim
 
-LABEL       author="QuintenQVD" maintainer="josdekurk@gmail.com"
+LABEL       author="Harumi" maintainer="ntncar311@gmail.com"
 
 ENV     DEBIAN_FRONTEND noninteractive
 
