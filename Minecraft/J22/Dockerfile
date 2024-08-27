@@ -2,21 +2,32 @@ FROM        --platform=$TARGETOS/$TARGETARCH debian:bullseye-slim
 
 LABEL       author="Harumi" maintainer="ntncar311@gmail.com"
 
-ENV     DEBIAN_FRONTEND noninteractive
+ENV         DEBIAN_FRONTEND noninteractive
 
 ## Update base packages
-SHELL        ["/bin/bash","-c"]
-RUN          apt update \
-             && apt upgrade -y
-RUN          apt install -y curl lsof ca-certificates openssl git tar sqlite3 fontconfig tzdata iproute2 libfreetype6 zip unzip curl
+SHELL       ["/bin/bash", "-c"]
+RUN         apt update && apt upgrade -y
+RUN         apt install -y curl lsof ca-certificates openssl git tar sqlite3 fontconfig tzdata iproute2 libfreetype6 zip unzip curl
 
-##Install graalVM
-RUN         curl -s "https://get.sdkman.io" | bash
-RUN         source $HOME/.sdkman/bin/sdkman-init.sh && sdk install java 22.0.2-graal
-RUN		useradd -d /home/container -m container
-USER    container
-ENV     USER=container HOME=/home/container
-WORKDIR /home/container
+## Install SDKMAN! and GraalVM
+RUN         curl -s "https://get.sdkman.io" | bash \
+             && bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && sdk install java 22.0.2-graal" \
+             && echo 'source $HOME/.sdkman/bin/sdkman-init.sh' >> /etc/profile
 
-COPY    ../entrypoint.sh /entrypoint.sh
-CMD     ["/bin/bash", "/entrypoint.sh"]
+## Create container user
+RUN         useradd -d /home/container -m container
+USER        container
+ENV         USER=container HOME=/home/container
+WORKDIR     /home/container
+
+## Ensure SDKMAN! is available to the container user
+RUN         mkdir -p /home/container/.sdkman \
+             && cp -r /root/.sdkman/* /home/container/.sdkman/ \
+             && chown -R container:container /home/container/.sdkman \
+             && echo 'source $HOME/.sdkman/bin/sdkman-init.sh' >> /home/container/.bashrc
+
+## Copy entrypoint script
+COPY        ../entrypoint.sh /entrypoint.sh
+
+## Default command
+CMD         ["/bin/bash", "/entrypoint.sh"]
