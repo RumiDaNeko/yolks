@@ -1,4 +1,4 @@
-FROM        --platform=$TARGETOS/$TARGETARCH debian:bullseye-slim
+FROM        --platform=$TARGETOS/$TARGETARCH ghcr.io/graalvm/jdk-community:20.0.2
 
 LABEL       author="Harumi" maintainer="ntncar311@gmail.com"
 
@@ -12,8 +12,6 @@ RUN          apt install -y curl lsof ca-certificates openssl git tar sqlite3 fo
 ## Install dependencies
 
 ##Install graalVM
-RUN         curl -s "https://get.sdkman.io" | bash
-RUN         source $HOME/.sdkman/bin/sdkman-init.sh && sdk install java 20.0.2-graal
 RUN		useradd -d /home/container -m container
 USER    container
 ENV     USER=container HOME=/home/container
