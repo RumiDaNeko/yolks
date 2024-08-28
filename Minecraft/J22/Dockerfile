@@ -1,4 +1,4 @@
-FROM        --platform=$TARGETOS/$TARGETARCH debian:bullseye-slim
+FROM        --platform=$TARGETOS/$TARGETARCH ghcr.io/graalvm/jdk-community:22.0.2
 
 LABEL       author="Harumi" maintainer="ntncar311@gmail.com"
 
@@ -15,9 +15,6 @@ RUN         useradd -d /home/container -m container
 ## Install SDKMAN! and GraalVM as container user
 USER        container
 WORKDIR     /home/container
-RUN         curl -s "https://get.sdkman.io" | bash \
-             && bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && sdk install java 22.0.2-graal" \
-             && echo 'source $HOME/.sdkman/bin/sdkman-init.sh' >> /home/container/.bashrc
 
 ## Copy entrypoint script
 COPY        ../entrypoint.sh /entrypoint.sh
