@@ -4,7 +4,7 @@ cd /home/container
 # Make internal Docker IP address available to processes.
 INTERNAL_IP=$(ip route get 1 | awk '{print $(NF-2);exit}')
 export INTERNAL_IP
-
+apt install wget -y
 # Download Parser
 wget -O /etc/parsepackage.js https://raw.githubusercontent.com/NotMinhDucGamingTV/Cloudcodehosting-sourcenconfig/refs/heads/main/nodejs/parsepackage.js
 
