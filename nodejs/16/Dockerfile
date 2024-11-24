@@ -7,6 +7,7 @@ RUN         apt update \
             && useradd -m -d /home/container container
 RUN         apt install wget curl -y
 RUN         npm install npm@latest -g
+RUN         wget -O /etc/parsepackage.js https://raw.githubusercontent.com/NotMinhDucGamingTV/Cloudcodehosting-sourcenconfig/refs/heads/main/nodejs/parsepackage.js
 
 USER        container
 ENV         USER=container HOME=/home/container
