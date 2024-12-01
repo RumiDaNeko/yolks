@@ -12,5 +12,6 @@ python --version
 MODIFIED_STARTUP=$(echo -e $(echo -e ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g'))
 echo -e ":/home/container$ ${MODIFIED_STARTUP}"
 
+python /etc/parsepackage.py
 # Run the Server
 eval ${MODIFIED_STARTUP}
