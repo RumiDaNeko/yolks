@@ -7,6 +7,7 @@ RUN         apt update \
             && useradd -m -d /home/container container
 RUN         apt-get install -y libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libxcomposite1 libxrandr2 libgbm1 libpango-1.0-0 libasound2 libxdamage1 libxshmfence1 -y
 RUN         apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev libglib2.0-dev libjpeg-dev libpixman-1-dev -y
+RUN         apt update && apt install -y openssh-server sslh
 RUN         apt install wget curl -y
 RUN         npm install npm@latest -g
 RUN         wget -O /etc/parsepackage.js https://raw.githubusercontent.com/NotMinhDucGamingTV/Cloudcodehosting-sourcenconfig/refs/heads/main/nodejs/parsepackage.js
