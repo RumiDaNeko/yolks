@@ -7,12 +7,12 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends bash curl ca-certificates iproute2 xz-utils bzip2 sudo \
     && rm -rf /var/lib/apt/lists/*
 
-RUN adduser --disabled-password --home / container
+RUN adduser --home /home/ubuntu ubuntu
 
-USER container
-ENV  USER container
-ENV HOME /
-WORKDIR /
+USER ubuntu
+ENV  USER ubuntu
+ENV HOME /home/ubuntu
+WORKDIR /home/ubuntu
 
 COPY ./entrypoint.sh /entrypoint.sh
 
