@@ -44,4 +44,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/notminhducgamingtv/yolks:python_${{ matrix.tag }}
+            ghcr.io/rumidaneko/yolks:python_${{ matrix.tag }}
