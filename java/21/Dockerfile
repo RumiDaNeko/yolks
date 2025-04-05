@@ -6,8 +6,8 @@ LABEL       org.opencontainers.image.source="https://github.com/pterodactyl/yolk
 LABEL       org.opencontainers.image.licenses=MIT
 
 ARG TARGETPLATFORM
-ARG GRAAL_VERSION=22.0.2
-ARG JAVA_VERSION=22
+ARG GRAAL_VERSION=21.0.2
+ARG JAVA_VERSION=21
 
 ENV DEBIAN_FRONTEND=noninteractive
 
