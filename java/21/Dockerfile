@@ -48,7 +48,8 @@ RUN ARCH=$(uname -m) && \
 RUN         apt update -y \
 						&& apt install -y curl lsof ca-certificates openssl git tar sqlite3 fontconfig tzdata iproute2 libfreetype6 \
 						&& useradd -d /home/container -m container
-
+# Download msh-config.json from the official source
+RUN curl -Lo /home/container/msh-config.json https://gist.githubusercontent.com/BolverBlitz/fa895e8062fcab7dd7a54d768843a261/raw/7224a0694a985ba1bff0b4fe9b44f2c79e9b495e/msh-config.json
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
