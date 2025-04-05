@@ -32,24 +32,12 @@ RUN apt-get update -y \
 
 ENV JAVA_HOME=/opt/java/graalvm \
     PATH="/opt/java/graalvm/bin:$PATH"
-
-RUN ARCH=$(uname -m) && \
-    if [ "$ARCH" = "x86_64" ]; then \
-        echo "Downloading MSH for x86_64" && \
-        curl -Lo /usr/local/bin/msh_server.bin ${MSH_D_URL}msh-linux-amd64.bin; \
-    elif [ "$ARCH" = "aarch64" ]; then \
-        echo "Downloading MSH for ARM64" && \
-        curl -Lo /usr/local/bin/msh_server.bin ${MSH_D_URL}msh-linux-arm64.bin; \
-    else \
-        echo "Unsupported architecture: $ARCH" && exit 1; \
-    fi && \
-    chmod +x /usr/local/bin/msh_server.bin
 	
 RUN         apt update -y \
 						&& apt install -y curl lsof ca-certificates openssl git tar sqlite3 fontconfig tzdata iproute2 libfreetype6 \
 						&& useradd -d /home/container -m container
 # Download msh-config.json from the official source
-RUN curl -Lo /home/container/msh-config.json https://gist.githubusercontent.com/BolverBlitz/fa895e8062fcab7dd7a54d768843a261/raw/7224a0694a985ba1bff0b4fe9b44f2c79e9b495e/msh-config.json
+
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
