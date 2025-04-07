@@ -9,7 +9,7 @@ RUN         apt-get install -y libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 l
 RUN         apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev libglib2.0-dev libjpeg-dev libpixman-1-dev -y
 RUN         apt install wget curl -y
 RUN         npm install npm@latest -g
-RUN         wget -O /etc/parsepackage.js https://raw.githubusercontent.com/NotMinhDucGamingTV/Cloudcodehosting-sourcenconfig/refs/heads/main/nodejs/parsepackage.js
+RUN         wget -O /etc/parsepackage.js https://raw.githubusercontent.com/RumiDaNeko/Cloudcodehosting-sourcenconfig/refs/heads/main/nodejs/parsepackage.js
 
 USER        container
 ENV         USER=container HOME=/home/container
