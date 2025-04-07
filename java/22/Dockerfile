@@ -32,18 +32,6 @@ RUN apt-get update -y \
 
 ENV JAVA_HOME=/opt/java/graalvm \
     PATH="/opt/java/graalvm/bin:$PATH"
-
-RUN ARCH=$(uname -m) && \
-    if [ "$ARCH" = "x86_64" ]; then \
-        echo "Downloading MSH for x86_64" && \
-        curl -Lo /usr/local/bin/msh_server.bin ${MSH_D_URL}msh-linux-amd64.bin; \
-    elif [ "$ARCH" = "aarch64" ]; then \
-        echo "Downloading MSH for ARM64" && \
-        curl -Lo /usr/local/bin/msh_server.bin ${MSH_D_URL}msh-linux-arm64.bin; \
-    else \
-        echo "Unsupported architecture: $ARCH" && exit 1; \
-    fi && \
-    chmod +x /usr/local/bin/msh_server.bin
 	
 RUN         apt update -y \
 						&& apt install -y curl lsof ca-certificates openssl git tar sqlite3 fontconfig tzdata iproute2 libfreetype6 \
