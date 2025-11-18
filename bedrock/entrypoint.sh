@@ -34,7 +34,7 @@ export INTERNAL_IP
 cd /home/container || exit 1
 
 
-REDIRECT_FROM=${REDIRECT_FROM_PORT} 
+REDIRECT_FROM=${SERVER_PORT} 
 ip6tables -t nat -A PREROUTING -p tcp --dport $REDIRECT_FROM -j REDIRECT --to-ports 19133
 ip6tables -t nat -A PREROUTING -p udp --dport $REDIRECT_FROM -j REDIRECT --to-ports 19133
 
