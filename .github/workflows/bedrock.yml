@@ -1,4 +1,4 @@
-name: build installers
+name: build bedrock
 on:
   workflow_dispatch:
   schedule:
@@ -10,7 +10,7 @@ on:
       - bedrock/**
 jobs:
   push:
-    name: "minecraft:{{ matrix.tag }}"
+    name: "yolks:mc_{{ matrix.tag }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -34,4 +34,4 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/rumidaneko/minecraft:${{ matrix.tag }}
+            ghcr.io/rumidaneko/yolks:mc_${{ matrix.tag }}
