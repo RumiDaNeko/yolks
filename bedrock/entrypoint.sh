@@ -33,6 +33,11 @@ export INTERNAL_IP
 # Switch to the container's working directory
 cd /home/container || exit 1
 
+
+REDIRECT_FROM=${REDIRECT_FROM_PORT} 
+iptables -t nat -A PREROUTING -p tcp --dport $REDIRECT_FROM -j REDIRECT --to-ports 19133
+iptables -t nat -A PREROUTING -p udp --dport $REDIRECT_FROM -j REDIRECT --to-ports 19133
+
 # Convert all of the "{{VARIABLE}}" parts of the command into the expected shell
 # variable format of "${VARIABLE}" before evaluating the string and automatically
 # replacing the values.
