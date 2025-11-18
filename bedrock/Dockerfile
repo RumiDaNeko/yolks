@@ -33,6 +33,8 @@ RUN         apt update \
 		&& apt upgrade -y \
 		&& apt -y --no-install-recommends install ca-certificates curl git unzip zip tar jq
 
+RUN         useradd -d /home/container -m container
+
 USER        container
 WORKDIR     /home/container
 
