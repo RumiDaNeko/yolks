@@ -34,9 +34,8 @@ export INTERNAL_IP
 cd /home/container || exit 1
 
 echo ${SERVER_PORT} 
-ip6tables -t nat -L
-ip6tables -t nat -A PREROUTING -p tcp --dport ${SERVER_PORT} -j REDIRECT --to-ports 19133
-ip6tables -t nat -A PREROUTING -p udp --dport ${SERVER_PORT} -j REDIRECT --to-ports 19133
+socat TCP6-LISTEN:${SERVER_PORT},fork TCP6:[::1]:19133 &
+socat UDP6-LISTEN:${SERVER_PORT},fork UDP6:[::1]:19133 &
 
 # Convert all of the "{{VARIABLE}}" parts of the command into the expected shell
 # variable format of "${VARIABLE}" before evaluating the string and automatically
