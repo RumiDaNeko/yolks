@@ -33,9 +33,6 @@ RUN         apt update \
 		&& apt upgrade -y \
 		&& apt -y --no-install-recommends install ca-certificates curl git unzip zip tar jq iptables
 
-RUN       REDIRECT_FROM=${REDIRECT_FROM_PORT} \ iptables -t nat -A PREROUTING -p tcp --dport $REDIRECT_FROM -j REDIRECT --to-ports 19133 \
-iptables -t nat -A PREROUTING -p udp --dport $REDIRECT_FROM -j REDIRECT --to-ports 19133
-
 RUN         useradd -d /home/container -m container
 
 USER        container
