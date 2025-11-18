@@ -31,7 +31,7 @@ ENV         DEBIAN_FRONTEND=noninteractive
 
 RUN         apt update \
 		&& apt upgrade -y \
-		&& apt -y --no-install-recommends install ca-certificates curl git unzip zip tar jq iptables iproute2 
+		&& apt -y --no-install-recommends install ca-certificates curl git unzip zip tar jq iptables iproute2 socat
 RUN 		echo $SERVER_PORT
 RUN         useradd -d /home/container -m container
 
