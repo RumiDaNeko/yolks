@@ -32,3 +32,12 @@ ENV         DEBIAN_FRONTEND=noninteractive
 RUN         apt update \
 		&& apt upgrade -y \
 		&& apt -y --no-install-recommends install ca-certificates curl git unzip zip tar jq
+
+USER        container
+WORKDIR     /home/container
+
+## Copy entrypoint script
+COPY        ../entrypoint.sh /entrypoint.sh
+
+## Default command
+CMD         ["/bin/bash", "/entrypoint.sh"]
