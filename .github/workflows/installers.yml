@@ -36,4 +36,4 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/notminhducgamingtv/installers:${{ matrix.tag }}
+            ghcr.io/rumidaneko/installers:${{ matrix.tag }}
