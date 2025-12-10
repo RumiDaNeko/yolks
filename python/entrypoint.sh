@@ -11,7 +11,8 @@ python --version
 # Replace Startup Variables
 MODIFIED_STARTUP=$(echo -e $(echo -e ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g'))
 echo -e ":/home/container$ ${MODIFIED_STARTUP}"
-
+if [[ "${CUSTOM_STARTUP}" == "0" ]]; then
 python /etc/parsepackage.py
+fi
 # Run the Server
 eval ${MODIFIED_STARTUP}
