@@ -12,7 +12,7 @@ RUN         apt update -y \
             && chmod +x dotnet-install.sh \
 			&& ./dotnet-install.sh -i /usr/share -v $D_V \
             && ln -s /usr/share/dotnet /usr/bin/dotnet
-RUN         curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
+RUN         curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
 RUN 		apt install -y nodejs
 RUN         npm install -g pm2
 
