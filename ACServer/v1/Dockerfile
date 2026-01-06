@@ -13,8 +13,10 @@ RUN         apt update -y \
 			&& ./dotnet-install.sh -i /usr/share -v $D_V \
             && ln -s /usr/share/dotnet /usr/bin/dotnet
 RUN         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-RUN         export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" \
-            && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
+ENV 		BASH_ENV /home/user/.bash_env
+RUN 		touch "${BASH_ENV}"
+RUN 		echo '. "${BASH_ENV}"' >> ~/.bashrc
+
 RUN         nvm install node
 RUN         npm install -g pm2
 
