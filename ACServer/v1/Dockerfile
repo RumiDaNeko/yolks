@@ -12,12 +12,8 @@ RUN         apt update -y \
             && chmod +x dotnet-install.sh \
 			&& ./dotnet-install.sh -i /usr/share -v $D_V \
             && ln -s /usr/share/dotnet /usr/bin/dotnet
-RUN         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-ENV 		BASH_ENV /home/user/.bash_env
-RUN 		touch "${BASH_ENV}"
-RUN 		echo '. "${BASH_ENV}"' >> ~/.bashrc
-
-RUN         nvm install node
+RUN         curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
+RUN 		apt install -y nodejs
 RUN         npm install -g pm2
 
 USER        container
