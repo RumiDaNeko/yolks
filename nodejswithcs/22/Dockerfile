@@ -29,12 +29,10 @@ RUN wget -O /etc/parsepackage.js \
 RUN set -eux; \
     ARCH=$(uname -m); \
     if [ "$ARCH" = "x86_64" ]; then ARCH="amd64"; else ARCH="arm64"; fi; \
-    MATCH="linux-${ARCH}"; \
-    mkdir -p /etc/codeserver/.local/lib /etc/codeserver/.config; \
-    LATEST_JSON=$(curl -s https://api.github.com/repos/coder/code-server/releases/latest); \
-    DOWNLOAD_URL=$(echo "$LATEST_JSON" | jq -r '.assets[].browser_download_url' | grep "$MATCH"); \
-    curl -fL "$DOWNLOAD_URL" | tar -C /etc/codeserver/.local/lib -xz; \
-    mv /etc/codeserver/.local/lib/code-server-*linux-${ARCH} /etc/codeserver/.local/lib/code-server; \
+    VERSION=$(curl -fsSL https://code-server.dev/version); \
+    curl -fL "https://github.com/coder/code-server/releases/download/v${VERSION}/code-server-${VERSION}-linux-${ARCH}.tar.gz" \
+    | tar -xz -C /etc/codeserver/.local/lib; \
+    mv /etc/codeserver/.local/lib/code-server-* /etc/codeserver/.local/lib/code-server; \
     ln -s /etc/codeserver/.local/lib/code-server/bin/code-server /usr/local/bin/code-server
 
 # Setup config symlink (config stored inside mounted volume)
