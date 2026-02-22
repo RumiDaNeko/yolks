@@ -1,4 +1,4 @@
-name: build nodejs
+name: build nodejs with code server
 on:
   workflow_dispatch:
   schedule:
