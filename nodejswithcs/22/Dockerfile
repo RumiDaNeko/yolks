@@ -29,8 +29,8 @@ RUN wget -O /etc/parsepackage.js \
 RUN set -eux; \
     ARCH=$(uname -m); \
     if [ "$ARCH" = "x86_64" ]; then ARCH="amd64"; else ARCH="arm64"; fi; \
-    VERSION=$(curl -fsSL https://code-server.dev/version); \
-    curl -fL "https://github.com/coder/code-server/releases/download/v${VERSION}/code-server-${VERSION}-linux-${ARCH}.tar.gz" \
+   	DOWNLOAD_URL=$(echo $(curl --silent "https://api.github.com/repos/coder/code-server/releases/latest") | jq .assets | jq -r .[].browser_download_url); \
+    curl -fL $DOWNLOAD_URL \
     | tar -xz -C /etc/codeserver/.local/lib; \
     mv /etc/codeserver/.local/lib/code-server-* /etc/codeserver/.local/lib/code-server; \
     ln -s /etc/codeserver/.local/lib/code-server/bin/code-server /usr/local/bin/code-server
