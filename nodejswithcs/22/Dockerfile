@@ -30,16 +30,16 @@ RUN set -eux; \
     ARCH=$(uname -m); \
     if [ "$ARCH" = "x86_64" ]; then ARCH="amd64"; else ARCH="arm64"; fi; \
     MATCH="linux-${ARCH}"; \
-    mkdir -p /mnt/server/.local/lib /mnt/server/.config; \
+    mkdir -p /etc/codeserver/.local/lib /etc/codeserver/.config; \
     LATEST_JSON=$(curl -s https://api.github.com/repos/coder/code-server/releases/latest); \
     DOWNLOAD_URL=$(echo "$LATEST_JSON" | jq -r '.assets[].browser_download_url' | grep "$MATCH"); \
-    curl -fL "$DOWNLOAD_URL" | tar -C /mnt/server/.local/lib -xz; \
-    mv /mnt/server/.local/lib/code-server-*linux-${ARCH} /mnt/server/.local/lib/code-server; \
-    ln -s /mnt/server/.local/lib/code-server/bin/code-server /usr/local/bin/code-server
+    curl -fL "$DOWNLOAD_URL" | tar -C /etc/codeserver/.local/lib -xz; \
+    mv /etc/codeserver/.local/lib/code-server-*linux-${ARCH} /etc/codeserver/.local/lib/code-server; \
+    ln -s /etc/codeserver/.local/lib/code-server/bin/code-server /usr/local/bin/code-server
 
 # Setup config symlink (config stored inside mounted volume)
 RUN mkdir -p /home/container/codeserver \
-    && ln -s /home/container/codeserver /mnt/server/.config/code-server \
+    && ln -s /home/container/codeserver/config.yml /etc/codeserver/.config/code-server/config.yaml \
     && chown -R container:container /home/container
 
 USER container
